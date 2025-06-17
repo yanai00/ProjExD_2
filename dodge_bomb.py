@@ -64,11 +64,28 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:
     return bb_imgs, bb_accs
 
 
+def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
+    """
+    移動量の合計値タプルに対応する向きの画像Surfaceを返す
+    """
+    if sum_mv == (0, -5):
+        return pg.transform.rotozoom(pg.image.load("fig/1.png"), 0, 0.9)
+    elif sum_mv == (0, 5):
+        return pg.transform.rotozoom(pg.image.load("fig/2.png"), 0, 0.9)
+    elif sum_mv == (-5, 0):
+        return pg.transform.rotozoom(pg.image.load("fig/3.png"), 90, 0.9)
+    elif sum_mv == (5, 0):
+        return pg.transform.rotozoom(pg.image.load("fig/3.png"), -90, 0.9)
+    else:
+        return pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("fig/pg_bg.jpg")    
-    kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
+    kk_img = get_kk_img((0, 0))
+    kk_img = get_kk_img(tuple(sum_mv))
     kk_rct = kk_img.get_rect()
     kk_rct.center = 300, 200
     bb_img = pg.Surface((20, 20)) #空のSurface
