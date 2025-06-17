@@ -36,7 +36,6 @@ def gameover(screen: pg.Surface) -> None:
     print("ゲームオーバー")
     go_img = pg.Surface((WIDTH, HEIGHT))  #空のSurface
     pg.draw.rect(go_img, (0, 0, 0), (0, 0, 20, 20)) #黒い四角を描画
-
     go_img.set_alpha(100) #半透明に設定
     screen.blit(go_img, (0, 0))
     cry_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9) #泣いているこうかとん画像
